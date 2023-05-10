@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub Repositories Data Fetch API</title>
+</head>
+<body>
+    <center> <h1>GitHub Repositories Data Fetch</h1><br></center>
+
+    <h3>This project is made by Harish Edison 20BIT0352 as submission for Engineering Intern recruitment by Balkan ID</h3>
+    <br>
+
+    <p> The GitHub Repositories Data Fetch has 2 functions:<br>
+        <ol><li>Data Fetch and Store</li>
+            <li>Data Download as CSV</li>
+        </ol><br><br>
+
+        The Data Fetch and Store involves a web application which takes input from the user, the client id and the client secret obtained from
+        Github OAuth which helps to get access token from the GitHub API in order to fetch data from GitHub.<br><br>
+
+        The user also inputs his/her PostgreSQL database details through the web application. To make this part secure, we can enable SSL mode
+        in the PostgreSQL database and enable SSL and 'required' when connecting the database with the Flask application.
+        The user also enters the username of whose Repositories data, the user wants to fetch.<br><br>
+
+        This information is retrieved by the Github_Repo_Fetcher.py which then fetches data and normalizes it and then stores into 2 tables in 
+        the database, namely: owners and repositories.<br><br>
+
+        The Data Download as CSV involves a web application which takes input from the user, the PostgreSQL detabase details which is then
+        retrieved by endpoint.py. This maps the data by first joining the owners and repositories tables on owner_id and then is written as a 
+        CSV file which is then available for download when the user hits the 'Download CSV' button.
+    </p>
+    <br>
+    <hr>
+    <br>
+    <center>
+    <h2> Data Fetch and Store </h2>
+    <form method="post" action="/">
+        <label for="client_id">OAuth Client ID:</label>
+        <input type="text" id="client_id" name="client_id" required><br><br>
+        <label for="client_secret">OAuth Client Secret:</label>
+        <input type="text" id="client_secret" name="client_secret" required><br><br>
+        <label for="hostname">PostgreSQL Hostname:</label>
+        <input type="text" id="hostname" name="hostname" required><br><br>
+        <label for="port">PostgreSQL Port:</label>
+        <input type="text" id="port" name="port" required><br><br>
+        <label for="db_name">PostgreSQL Database Name:</label>
+        <input type="text" id="db_name" name="db_name" required><br><br>
+        <label for="username">PostgreSQL Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">PostgreSQL Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <label for="github_username">GitHub Username:</label>
+        <input type="text" id="github_username" name="github_username" required><br><br>
+        <input type="submit" value="Fetch Repositories Data">
+    </form></center>
+
+    {% if success_message %}
+    <p style="color: green;">{{ success_message }}</p>
+    {% endif %}
+    {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+</body>
+</html>

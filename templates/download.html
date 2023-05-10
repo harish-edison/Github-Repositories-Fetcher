@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSV Download</title>
+</head>
+<body>
+   <center><h1>CSV Download</h1>
+    <form action="/download_csv" method="post">
+        <label for="hostname">PostgreSQL Hostname:</label>
+        <input type="text" id="hostname" name="hostname" required><br><br>
+        <label for="port">PostgreSQL Port:</label>
+        <input type="text" id="port" name="port" required><br><br>
+        <label for="db_name">PostgreSQL Database Name:</label>
+        <input type="text" id="db_name" name="db_name" required><br><br>
+        <label for="username">PostgreSQL Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">PostgreSQL Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Download CSV">
+    </form>
+</center> 
+{% if success_message %}
+<p style="color: green;">{{ success_message }}</p>
+{% endif %}
+{% if error_message %}
+<p style="color: red;">{{ error_message }}</p>
+{% endif %}
+</body>
+</html>
